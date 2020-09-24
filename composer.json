@@ -1,0 +1,20 @@
+{
+  "name": "notus.sh/wp-static-options",
+  "description": "Set WordPress and plugins options through configuration files instead of the wp_options table.",
+  "homepage": "https://github.com/notus-sh/wp-static-options",
+  "version": "1.0.0",
+  
+  "type": "wordpress-muplugin",
+  "keywords": ["plugin", "mu-plugin", "must-use", "wordpress", "bedrock"],
+  
+  "support": {
+    "issues": "https://github.com/notus-sh/wp-static-options/issues"
+  },
+  
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "config": {
+    "optimize-autoloader": true,
+    "preferred-install": "dist"
+  }
+}
