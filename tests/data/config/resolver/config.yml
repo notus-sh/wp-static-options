@@ -1,0 +1,11 @@
+---
+string: 'a string'
+integer: 12
+array: [3, 5, 7]
+hash:
+  string: "another string"
+  integer: 42
+  array: [11, 13, 17, 19]
+  nested:
+    config: true
+    conflicting: 'value'

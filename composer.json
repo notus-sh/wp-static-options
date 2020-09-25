@@ -3,18 +3,59 @@
   "description": "Set WordPress and plugins options through configuration files instead of the wp_options table.",
   "homepage": "https://github.com/notus-sh/wp-static-options",
   "version": "1.0.0",
+  "license": "Apache-2.0",
   
   "type": "wordpress-muplugin",
   "keywords": ["plugin", "mu-plugin", "must-use", "wordpress", "bedrock"],
   
   "support": {
+    "source": "https://github.com/notus-sh/wp-static-options",
+    "doc": "https://github.com/notus-sh/wp-static-options",
     "issues": "https://github.com/notus-sh/wp-static-options/issues"
   },
+  
+  
+  "require": {
+    "hassankhan/config": "~2.1.0",
+    "webmozart/glob": "~4.1.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "WPStaticOptions\\": "src/"
+    },
+    "files": [
+      "src/function.php"
+    ]
+  },
+  
   
   "minimum-stability": "dev",
   "prefer-stable": true,
   "config": {
     "optimize-autoloader": true,
     "preferred-install": "dist"
+  },
+  
+  "extra": { "wordpress-install-dir": "vendor/roots/wordpress" },
+  "require-dev": {
+    "symfony/yaml": "~5.1",
+    "phpunit/phpunit": "~9.3.11",
+    "squizlabs/php_codesniffer": "~3.5.4",
+    "phpmd/phpmd": "~2.8.1",
+    "roots/wordpress": "~5.5"
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "WPStaticOptions\\Tests\\Unit\\": "tests/unit/",
+      "WPStaticOptions\\Tests\\Integration\\": "tests/integration/"
+    }
+  },
+  
+  "scripts": {
+    "lint": "phpcs --standard=dev/config/phpcs.xml",
+    "phpmd": "phpmd ./ text dev/config/phpmd.xml --exclude dev/,tests/data,tmp/,vendor/",
+    "tests": "phpunit --configuration dev/config/phpunit.xml --cache-result-file=tmp/.phpunit.result.cache --verbose",
+    "tests-unit": "@composer run test --testsuite unit",
+    "tests-integration": "@composer run test --testsuite integration"
   }
 }

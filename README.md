@@ -12,4 +12,27 @@ Need examples? Just think about WordPress permalinks or WooCommerce payment gate
 
 ## What does `wp-static-options`?
 
-`wp-static-options` allows you to set "strategic" options once and for all in configuration files. It hooks into [WordPress's `get_option`](https://developer.wordpress.org/reference/functions/get_option/) to always return the right value (the one you want to be set).
+`wp-static-options` allows you to set options once and for all in configuration files. It hooks into [WordPress's `get_option`](https://developer.wordpress.org/reference/functions/get_option/) to always return the right value (the one you want to be set).
+
+
+
+## Contributing
+
+### Development environment
+
+You can use `dev/docker/Dockerfile` to build a lightweight local development environment.
+
+```shell script
+docker build                  \
+  --build-arg USER_ID=$(id -u) \
+  --build-arg GROUP_ID=$(id -g) \
+  --tag php:dev                  \
+  --file ./dev/docker/Dockerfile  \
+  ./dev/docker/
+``` 
+
+Then run the container with :
+
+```shell script
+docker run -it --rm --mount type=bind,source="$(pwd)"/,target=/home/runner/app --entrypoint /bin/bash php:dev
+```

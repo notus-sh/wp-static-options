@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<ruleset name="Roots">
+  <description>Roots Coding Standards</description>
+
+  <!-- Scan all files in directory -->
+  <file>./../../</file>
+
+  <!-- Scan only PHP files -->
+  <arg name="extensions" value="php"/>
+
+  <!-- Ignore development tools and Composer dependencies -->
+  <exclude-pattern>dev/</exclude-pattern>
+  <exclude-pattern>vendor/</exclude-pattern>
+  <exclude-pattern>tmp/</exclude-pattern>
+
+  <!-- Show colors in console -->
+  <arg value="-colors"/>
+
+  <!-- Show sniff codes in all reports -->
+  <arg value="psv"/>
+
+  <!-- Use PSR-12 as a base -->
+  <rule ref="PSR12" />
+  <rule ref="PSR1.Files.SideEffects.FoundWithSymbols">
+    <exclude-pattern>*/boot.php</exclude-pattern>
+    <exclude-pattern>*/wp-static-options.php</exclude-pattern>
+  </rule>
+</ruleset>

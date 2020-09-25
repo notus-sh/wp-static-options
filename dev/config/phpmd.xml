@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<ruleset name="PHP Mess Detector rule set"
+         xmlns="http://pmd.sf.net/ruleset/1.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://pmd.sf.net/ruleset/1.0.0 http://pmd.sf.net/ruleset_xml_schema.xsd"
+         xsi:noNamespaceSchemaLocation="http://pmd.sf.net/ruleset_xml_schema.xsd">
+
+    <description>PHP Mess Detector rule set</description>
+
+    <!-- Code size -->
+    <rule ref="rulesets/codesize.xml">
+        <!-- The default value is way too high -->
+        <exclude name="ExcessiveParameterList" />
+    </rule>
+    <rule ref="rulesets/codesize.xml/ExcessiveParameterList">
+        <properties>
+            <property name="minimum" value="5" />
+        </properties>
+    </rule>
+    
+    <rule ref="rulesets/cleancode.xml">
+        <!--
+        PHP is verbose enough to not cut on this kind of shortened syntax for calls on
+        methods that possibly return something or false.
+        -->
+        <exclude name="IfStatementAssignment" />
+        
+        <!--
+        Some classes are made to be call via static methods.
+        -->
+        <exclude name="StaticAccess" />
+    </rule>
+    
+    <rule ref="rulesets/controversial.xml" />
+    <rule ref="rulesets/design.xml" />
+
+    <!-- Naming conventions -->
+    <rule ref="rulesets/naming.xml">
+        <!-- Sometime a short name is enough. -->
+        <exclude name="ShortVariable" />
+        <!-- And sometime a name is not long enough. -->
+        <exclude name="LongVariable" />
+    </rule>
+    <rule ref="rulesets/naming.xml/LongVariable">
+        <properties>
+            <property name="maximum" value="25" />
+        </properties>
+    </rule>
+
+    <rule ref="rulesets/unusedcode.xml">
+        <!--
+        PHPMD does not understand constructions like `foreach($items = function() as $key => $value)`
+        -->
+        <exclude name="UnusedLocalVariable" />
+    </rule>
+</ruleset>
