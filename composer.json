@@ -2,6 +2,7 @@
   "name": "notus.sh/wp-static-options",
   "description": "Set WordPress and plugins options through configuration files instead of the wp_options table.",
   "homepage": "https://github.com/notus-sh/wp-static-options",
+  
   "version": "1.0.0",
   "license": "Apache-2.0",
   
@@ -13,6 +14,15 @@
     "doc": "https://github.com/notus-sh/wp-static-options",
     "issues": "https://github.com/notus-sh/wp-static-options/issues"
   },
+  
+  "authors": [
+    {
+      "name": "Gaël-Ian Havard",
+      "email": "gael-ian@notus.sh",
+      "homepage": "https://notus.sh",
+      "role": "Developer"
+    }
+  ],
   
   
   "require": {
@@ -26,6 +36,10 @@
     "files": [
       "src/function.php"
     ]
+  },
+  
+  "archive": {
+    "exclude": ["/dev", "/tests", "/tmp", "/vendor", ".gitignore"]
   },
   
   
