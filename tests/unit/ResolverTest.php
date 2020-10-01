@@ -115,4 +115,35 @@ class ResolverTest extends TestCase
         $this->assertNotEquals($hash['nested']['conflicting'], $resolved['nested']['conflicting']);
         $this->assertTrue($resolved['nested']['config']);
     }
+    
+    public function testMergeAll()
+    {
+        $set = Set::from(TESTS_DATA . '/config/resolver');
+        $resolver = new Resolver($set);
+    
+        $options = [
+            'string' => 'not the right string',
+            'hash' => [
+                'nested' => [
+                    'option' => false,
+                    'conflicting' => 'replaced'
+                ]
+            ]
+        ];
+        $merged = $resolver->mergeAll($options);
+    
+        $this->assertEqualsCanonicalizing(['string', 'integer', 'array', 'hash'], array_keys($merged));
+        $this->assertNotEquals($options['string'], $merged['string']);
+    
+        $optionsHash = $options['hash'];
+        $mergedHash = $merged['hash'];
+        $this->assertEqualsCanonicalizing(['string', 'integer', 'array', 'nested'], array_keys($mergedHash));
+        
+        $optionsNested = $optionsHash['nested'];
+        $mergedNested = $mergedHash['nested'];
+        $this->assertEqualsCanonicalizing(['option', 'config', 'conflicting'], array_keys($mergedNested));
+        $this->assertEquals($optionsNested['option'], $mergedNested['option']);
+        $this->assertNotEquals($optionsNested['conflicting'], $mergedNested['conflicting']);
+        $this->assertTrue($mergedNested['config']);
+    }
 }

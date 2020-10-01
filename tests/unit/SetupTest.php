@@ -13,8 +13,8 @@ class SetupTest extends TestCase
     {
         $stub = $this->createStub(self::class);
         $stub
-          ->expects($this->exactly(2))->method('stubbed')
-          ->with($this->stringStartsWith('pre_option_'))
+          ->expects($this->exactly(3))->method('stubbed')
+          ->with($this->stringStartsWith('pre_'))
           ->will($this->returnValue(null));
         
         setup(TESTS_DATA . '/config/setup', [$stub, 'stubbed']);

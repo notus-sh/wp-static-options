@@ -125,6 +125,24 @@ class Resolver
         return $options;
     }
     
+    public function mergeAll($options)
+    {
+        return array_reduce($names = array_keys($options), function ($merged, $name) use ($options) {
+            if (!$this->hasOption($name)) {
+                $merged[$name] = $options[$name];
+                return $merged;
+            }
+            
+            if (!$this->isOptionsHash($options[$name])) {
+                $merged[$name] = $this->getOption($name);
+                return $merged;
+            }
+            
+            $merged[$name] = $this->merge($options[$name], $this->getOption($name));
+            return $merged;
+        }, $this->getOptions()->all());
+    }
+    
     protected function isOptionsHash($options)
     {
         return is_array($options) && count(array_filter(array_keys($options), 'is_string')) > 0;
