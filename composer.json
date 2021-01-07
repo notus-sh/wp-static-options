@@ -26,7 +26,7 @@
   
   
   "require": {
-    "hassankhan/config": "~2.1.0",
+    "hassankhan/config": "^2.2.0",
     "webmozart/glob": "~4.1.0"
   },
   "autoload": {
