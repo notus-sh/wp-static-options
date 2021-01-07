@@ -3,7 +3,7 @@
   "description": "Set WordPress and plugins options through configuration files instead of the wp_options table.",
   "homepage": "https://github.com/notus-sh/wp-static-options",
   
-  "version": "1.1.0",
+  "version": "1.1.1",
   "license": "Apache-2.0",
   
   "type": "wordpress-muplugin",
