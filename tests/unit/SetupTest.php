@@ -13,13 +13,13 @@ class SetupTest extends TestCase
     {
         $stub = $this->createStub(self::class);
         $stub
-          ->expects($this->exactly(3))->method('stubbed')
-          ->with($this->stringStartsWith('pre_'))
-          ->will($this->returnValue(null));
-        
+            ->expects($this->exactly(3))->method('stubbed')
+            ->with($this->stringStartsWith('pre_'))
+            ->will($this->returnValue(null));
+
         setup(TESTS_DATA . '/config/setup', [$stub, 'stubbed']);
     }
-    
+
     public function stubbed()
     {
         throw new RuntimeException("Original method should not have been called");

@@ -2,8 +2,8 @@
 
 namespace WPStaticOptions\Tests\Unit;
 
-use WPStaticOptions\Loader;
 use PHPUnit\Framework\TestCase;
+use WPStaticOptions\Loader;
 
 class LoaderTest extends TestCase
 {
@@ -40,15 +40,18 @@ class LoaderTest extends TestCase
         ];
         $loaded = Loader::loadRecursive($paths);
 
-        $this->assertEquals([
-            // From simple
-            'fromYaml',
-            'fromPhp',
-            // From multiple
-            'fromJson',
-            'fromIni',
-            'fromTooFar'
-        ], array_keys($loaded->get('merged')));
+        $this->assertEquals(
+            [
+                // From simple
+                'fromYaml',
+                'fromPhp',
+                // From multiple
+                'fromJson',
+                'fromIni',
+                'fromTooFar'
+            ],
+            array_keys($loaded->get('merged'))
+        );
     }
 
     public function testLoadRecursiveWithMissingPath()

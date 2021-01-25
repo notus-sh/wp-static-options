@@ -2,8 +2,8 @@
 
 namespace WPStaticOptions\Tests\Unit;
 
-use WPStaticOptions\Set;
 use PHPUnit\Framework\TestCase;
+use WPStaticOptions\Set;
 
 class SetTest extends TestCase
 {
@@ -16,11 +16,11 @@ class SetTest extends TestCase
         $this->assertTrue($set->get('merged.fromPhp'));
         $this->assertEmpty(array_diff(array_keys($set->get('merged')), ['fromPhp', 'fromYaml']));
     }
-    
+
     public function testKeys()
     {
         $set = Set::from(TESTS_DATA . '/config/loader/simple');
-        
+
         $this->assertEmpty(array_diff($set->keys(), ['top', 'deep', 'merged']));
     }
 
@@ -31,12 +31,12 @@ class SetTest extends TestCase
 
         $this->assertSame($setA, $setB);
     }
-    
+
     public function testFromSingletonDistinct()
     {
         $setA = Set::from(TESTS_DATA . '/config/loader/simple');
         $setB = Set::from(TESTS_DATA . '/config/loader/multiple');
-        
+
         $this->assertNotSame($setA, $setB);
     }
 }
